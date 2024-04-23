@@ -13,20 +13,20 @@
         <div class="container">
             <h1>DojoWeather</h1>
             <ul>
-                <li onclick="selectCity(this)">Burbank</li>
-                <li onclick="selectCity(this)">Chicago</li>
-                <li onclick="selectCity(this)">Dallas</li>
+                <li onclick="selectCity(this);getWeatherData();">Burbank</li>
+                <li onclick="selectCity(this);getWeatherData();">Chicago</li>
+                <li onclick="selectCity(this);getWeatherData();">Dallas</li>
             </ul>
         </div>
     </nav>
     <main>
         <header class="container">
-            <h2>San Jose</h2>
+            <h2>Select a city</h2>
             <div class="change-temp">
                 <p>show temperature in</p>
                 <select onchange="changeUnit()" name="temperature" id="temperature">
                     <option value="celsius">°C</option>
-                    <option value="farenheit">°F</option>
+                    <option selected value="farenheit">°F</option>
                 </select>
             </div>
         </header>

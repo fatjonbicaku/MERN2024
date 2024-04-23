@@ -3,10 +3,14 @@ function acceptCookies() {
     cookie.remove();
 }
 
+var city = '';
 function selectCity(el) {
     var value = el.innerText;
+    city = value;
     alert("Loading weather report for: " + value + "...");
+    // console.log(city);
 }
+
 
 function changeUnit() {
     var tempmax = document.querySelectorAll('.max span');
@@ -31,10 +35,26 @@ function changeUnit() {
 var API = 'dfb3fc433c68ab13e8e82397e651d966';
 
 async function getWeatherData() {
-    var request = await fetch('https://api.openweathermap.org/data/2.5/weather?q=tirana&appid=' + API);
+    var cityname = document.querySelector('header h2');
+    var weatherPrediction= document.querySelector('.weather p');
+    var displayMax = document.querySelector('.max span');
+    var displayMin = document.querySelector('.min span');
+    var img = document.querySelector('.weather > img');
+    var request = await fetch('https://api.openweathermap.org/data/2.5/weather?q='+city+'&appid='+API);
     var weatherData = await request.json();
+
+    cityname.innerText= city;
+    weatherPrediction.innerText = weatherData.weather[0].description
+    displayMax.innerText = weatherData.main.temp_max;
+    displayMin.innerText = weatherData.main.temp_min;
+
+    if (weatherData.weather[0].description =="haze") {
+        img.src = './assets/some_sun.png';
+        
+    } else {
+        img.scr = './assets/some_rain.png';
+    }
+
     // console.log(weatherData.data);
 
 }
-
-getWeatherData();
